@@ -172,6 +172,53 @@
       </div>
     </div>
 
+
+      <div class="col-md-4">
+      <div class="card shadow-lg">
+        <img src="{{ url_for('static', filename='imagenes/tacos.jpg') }}" class="card-img-top">
+        <div class="card-body text-center">
+          <h4 class="fw-bold text-warning">Tacos de pollo</h4>
+          <p class="text-white-50">Tacos de pollo desmenusado</p>
+          <h5 class="text-success fw-bold">$85.00</h5>
+
+          <form action="{{ url_for('ordenar') }}" method="POST">
+            <input type="hidden" name="producto" value="Tacos">
+            <input type="hidden" name="precio" value="85">
+            <input type="hidden" name="imagen" value="/static/imagenes/tacos.jpg">
+
+            <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
+
+            <button class="btn-neon w-100">Ordenar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+      <div class="col-md-4">
+      <div class="card shadow-lg">
+        <img src="{{ url_for('static', filename='imagenes/rostisado.jpg') }}" class="card-img-top">
+        <div class="card-body text-center">
+          <h4 class="fw-bold text-warning">Rostisado</h4>
+          <p class="text-white-50">Pollo entero rostisado</p>
+          <h5 class="text-success fw-bold">$85.00</h5>
+
+          <form action="{{ url_for('ordenar') }}" method="POST">
+            <input type="hidden" name="producto" value="Rostisado">
+            <input type="hidden" name="precio" value="85">
+            <input type="hidden" name="imagen" value="/static/imagenes/rostisado.jpg">
+
+            <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
+
+            <button class="btn-neon w-100">Ordenar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
