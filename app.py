@@ -3,15 +3,16 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 from datetime import datetime
-import webbrowser
 
 app = Flask(__name__)
 app.secret_key = "polloselrey2025"
 
 # ------------------------------------------
-# 🔗 CONEXIÓN A MONGO DB (MISMA BD DEL ADMIN)
+# 🔗 CONEXIÓN A MONGO DB ATLAS (RENDER NO USA LOCALHOST)
 # ------------------------------------------
-cliente = MongoClient("mongodb://localhost:27017/")
+MONGO_URI = "mongodb+srv://pepegarza194567_db_user:LDC11012004@cluster0.lhny06q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+cliente = MongoClient(MONGO_URI)
 db = cliente["pollos_el_rey"]
 
 productos_col = db["productos"]
@@ -152,8 +153,7 @@ def guardar_comentario(id):
     return "Comentario guardado correctamente", 200
 
 # -------------------------------------------------------------
-# 🚀 EJECUCIÓN
+# 🚀 EJECUCIÓN (Render NO usa debug ni webbrowser)
 # -------------------------------------------------------------
 if __name__ == '__main__':
-    webbrowser.open("http://127.0.0.1:5000")
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
