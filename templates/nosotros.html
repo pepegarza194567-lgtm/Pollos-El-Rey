@@ -2,6 +2,7 @@
 {% block content %}
 
 <div class="container mt-5 text-center">
+
   <h2 class="text-warning fw-bold neon-title">
     <i class="bi bi-people-fill"></i> Sobre Nosotros
   </h2>
@@ -12,18 +13,21 @@
   </p>
 
   <div class="row g-4 justify-content-center mt-4">
-    
+
     <div class="col-md-4">
       <img src="{{ url_for('static', filename='imagenes/nosotros/contactame.jpg') }}"
-           class="img-fluid rounded shadow neon-img">
+           class="img-fluid rounded shadow neon-img"
+           alt="Sobre Nosotros 1">
     </div>
 
     <div class="col-md-4">
       <img src="{{ url_for('static', filename='imagenes/nosotros/contactame1.jpg') }}"
-           class="img-fluid rounded shadow neon-img">
+           class="img-fluid rounded shadow neon-img"
+           alt="Sobre Nosotros 2">
     </div>
 
   </div>
+
 </div>
 
 {% endblock %}
