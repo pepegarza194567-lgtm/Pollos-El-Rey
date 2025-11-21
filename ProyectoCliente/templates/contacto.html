@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container mt-5 text-center">
+
+  <h2 class="fw-bold text-warning neon-title">
+    <i class="bi bi-envelope-fill"></i> Contáctanos
+  </h2>
+
+  <p class="text-white mb-4">¿Dudas o comentarios? Escríbenos y te atenderemos lo más pronto posible.</p>
+
+  <div class="contact-box p-4 mx-auto">
+    <form method="POST">
+
+      <input type="email" name="correo" class="form-control contact-input" placeholder="Tu correo" required>
+
+      <input type="text" name="asunto" class="form-control contact-input mt-3" placeholder="Asunto" required>
+
+      <textarea name="mensaje" rows="4" class="form-control contact-input mt-3" placeholder="Escribe tu mensaje..." required></textarea>
+
+      <button class="btn-neon mt-4 w-100">
+        <i class="bi bi-send-fill"></i> Enviar Mensaje
+      </button>
+
+    </form>
+  </div>
+
+</div>
+
+{% endblock %}
