@@ -8,17 +8,10 @@ import os
 app = Flask(__name__)
 app.secret_key = "polloselrey2025"
 
-# ------------------------------------------
-# 🔗 CONEXIÓN A MONGO DB ATLAS
-# ------------------------------------------
-MONGO_URI = os.getenv("MONGO_URI")
+# -----------------------------------------------------
+# 🔗 CONEXIÓN A MONGO DB ATLAS  (CORRECCIÓN FINAL)
+# -----------------------------------------------------
 MONGO_URI = "mongodb+srv://pollos_user:Pollos2025@cluster0.lhny06q.mongodb.net/pollos_el_rey?retryWrites=true&w=majority&appName=Cluster0"
-
-cliente = MongoClient(MONGO_URI)
-db = cliente["pollos_el_rey"]
-
-if not MONGO_URI:
-    raise Exception("❌ ERROR: La variable MONGO_URI no está definida en Render")
 
 try:
     cliente = MongoClient(MONGO_URI)
@@ -33,9 +26,9 @@ productos_col = db["productos"]
 pedidos_col = db["pedidos"]
 mensajes_col = db["mensajes"]
 
-# ------------------------------------------
-# ✉️ CONFIGURACIÓN DE CORREO
-# ------------------------------------------
+# -----------------------------------------------------
+# ✉️ CONFIGURACIÓN CORREO
+# -----------------------------------------------------
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
@@ -45,9 +38,9 @@ app.config['MAIL_DEFAULT_SENDER'] = ('Pollos El Rey', os.getenv("MAIL_USERNAME")
 
 mail = Mail(app)
 
-# ------------------------------------------
-# 🔥 RUTAS PRINCIPALES
-# ------------------------------------------
+# -----------------------------------------------------
+# 🔥 RUTAS
+# -----------------------------------------------------
 @app.route('/')
 def inicio():
     return render_template('index.html')
@@ -64,9 +57,9 @@ def promociones():
 def nosotros():
     return render_template('nosotros.html')
 
-# ------------------------------------------
+# -----------------------------------------------------
 # ✉️ CONTACTO
-# ------------------------------------------
+# -----------------------------------------------------
 @app.route('/contacto', methods=['GET', 'POST'])
 def contacto():
     if request.method == 'POST':
@@ -102,9 +95,9 @@ def contacto():
 
     return render_template('contacto.html')
 
-# ------------------------------------------
-# 🛒 ORDENAR PLATILLO (CORREGIDO)
-# ------------------------------------------
+# -----------------------------------------------------
+# 🛒 ORDENAR
+# -----------------------------------------------------
 @app.route('/ordenar', methods=['POST'])
 def ordenar():
     nombre = request.form.get("nombre", "").strip()
@@ -142,18 +135,18 @@ def ordenar():
 
     return redirect(url_for('mis_pedidos', telefono=telefono))
 
-# ------------------------------------------
+# -----------------------------------------------------
 # 📦 MIS PEDIDOS
-# ------------------------------------------
+# -----------------------------------------------------
 @app.route('/mis_pedidos')
 def mis_pedidos():
     telefono = request.args.get("telefono", "")
     pedidos = list(pedidos_col.find({"telefono": telefono})) if telefono else []
     return render_template('mis_pedidos.html', pedidos=pedidos, telefono=telefono)
 
-# ------------------------------------------
+# -----------------------------------------------------
 # 💬 GUARDAR COMENTARIO
-# ------------------------------------------
+# -----------------------------------------------------
 @app.route('/guardar_comentario/<id>', methods=['POST'])
 def guardar_comentario(id):
     comentario = request.form.get("comentario", "").strip()
@@ -168,8 +161,8 @@ def guardar_comentario(id):
 
     return "Comentario guardado correctamente", 200
 
-# -------------------------------------------------------------
-# 🚀 EJECUCIÓN (Render)
-# -------------------------------------------------------------
+# -----------------------------------------------------
+# 🚀 EJECUCIÓN
+# -----------------------------------------------------
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
