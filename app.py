@@ -9,10 +9,9 @@ app = Flask(__name__)
 app.secret_key = "polloselrey2025"
 
 # ------------------------------------------
-# 🔗 CONEXIÓN A MONGO DB ATLAS (VARIABLE DE ENTORNO)
+# 🔗 CONEXIÓN A MONGO DB ATLAS
 # ------------------------------------------
 MONGO_URI = os.getenv("MONGO_URI")
-
 cliente = MongoClient(MONGO_URI)
 db = cliente["pollos_el_rey"]
 
@@ -66,7 +65,6 @@ def contacto():
             return redirect(url_for('contacto'))
 
         try:
-            # Enviar correo
             msg = Message(
                 subject=f"Nuevo mensaje: {asunto}",
                 recipients=[os.getenv("MAIL_USERNAME")],
@@ -74,7 +72,6 @@ def contacto():
             )
             mail.send(msg)
 
-            # Guardar en Mongo
             mensajes_col.insert_one({
                 "correo": correo,
                 "asunto": asunto,
@@ -92,20 +89,23 @@ def contacto():
     return render_template('contacto.html')
 
 # ------------------------------------------
-# 🛒 ORDENAR PLATILLO
+# 🛒 ORDENAR PLATILLO (CORREGIDO)
 # ------------------------------------------
 @app.route('/ordenar', methods=['POST'])
 def ordenar():
     nombre = request.form.get("nombre", "").strip()
     telefono = request.form.get("telefono", "").strip()
-    producto = request.form.get("producto")
-    precio = request.form.get("precio")
-    imagen = request.form.get("imagen")
+
+    # valores que pueden NO venir del HTML
+    producto = request.form.get("producto", "").strip()
+    precio = request.form.get("precio", "0").strip()
+    imagen = request.form.get("imagen", "").strip()
 
     if not nombre or not telefono:
         flash("⚠️ Debes ingresar nombre y número.", "warning")
         return redirect(url_for('menu'))
 
+    # asegurar que precio sea número
     try:
         precio = float(precio)
     except:
@@ -114,7 +114,7 @@ def ordenar():
     pedido = {
         "cliente": nombre.title(),
         "telefono": telefono,
-        "producto": producto,
+        "producto": producto if producto else "Sin especificar",
         "precio": precio,
         "imagen": imagen,
         "estado": "Pendiente",
