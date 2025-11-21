@@ -34,8 +34,11 @@
           <td class="fw-bold">{{ pedido.producto }}</td>
 
           <td>
-            <img src="{{ url_for('static', filename=pedido.imagen.replace('./','')) }}"
-                 width="80" class="rounded shadow neon-img">
+            {% if pedido.imagen %}
+              <img src="{{ pedido.imagen }}" width="80" class="rounded shadow neon-img">
+            {% else %}
+              <span class="text-danger">Sin imagen</span>
+            {% endif %}
           </td>
 
           <td class="text-success fw-bold">${{ pedido.precio }}.00</td>
