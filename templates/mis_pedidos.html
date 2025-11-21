@@ -1,0 +1,90 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="container mt-5">
+  <h2 class="text-center text-warning fw-bold" style="text-shadow:0 0 12px #ff2d2d;">
+    <i class="bi bi-bag-check"></i> Mis Pedidos
+  </h2>
+
+  <!-- Saludo -->
+  <div class="alert alert-dark shadow-sm text-center mt-3 neon-box">
+    👋 Hola <strong>{{ pedidos[0]['cliente'] if pedidos else '' }}</strong> ({{ telefono }})
+  </div>
+
+  {% if pedidos %}
+  <div class="table-responsive mt-4">
+    <table class="table table-dark table-hover table-bordered align-middle neon-table">
+      <thead class="text-center">
+        <tr>
+          <th>ID</th>
+          <th>Producto</th>
+          <th>Imagen</th>
+          <th>Precio</th>
+          <th>Estado</th>
+          <th>Fecha</th>
+          <th>Comentario</th>
+        </tr>
+      </thead>
+
+      <tbody class="text-center">
+        {% for pedido in pedidos %}
+        <tr>
+          <td>{{ loop.index }}</td>
+
+          <td class="fw-bold">{{ pedido.producto }}</td>
+
+          <td>
+            <img src="{{ url_for('static', filename=pedido.imagen.replace('./','')) }}"
+                 width="80" class="rounded shadow neon-img">
+          </td>
+
+          <td class="text-success fw-bold">${{ pedido.precio }}.00</td>
+
+          <td>
+            {% if pedido.estado == "Pendiente" %}
+              <span class="badge bg-warning text-dark neon-badge">Pendiente</span>
+            {% else %}
+              <span class="badge bg-success neon-badge">Entregado</span>
+            {% endif %}
+          </td>
+
+          <td>{{ pedido.fecha }}</td>
+
+          <td>
+            <form onsubmit="guardarComentario(event, '{{ pedido._id }}')">
+              <textarea name="comentario"
+                        class="form-control form-comment mb-2">{{ pedido.comentario }}</textarea>
+              <button class="btn-neon-mini w-100">Guardar</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+
+    </table>
+  </div>
+
+  {% else %}
+    <div class="alert alert-warning text-center fw-bold mt-4 neon-box">
+      😢 No tienes pedidos aún.
+    </div>
+  {% endif %}
+</div>
+
+<script>
+function guardarComentario(event, id) {
+  event.preventDefault();
+
+  let data = new URLSearchParams(new FormData(event.target));
+
+  fetch(`/guardar_comentario/${id}`, {
+    method: "POST",
+    body: data
+  })
+  .then(r => r.text())
+  .then(t => alert(t))
+  .catch(() => alert("❌ Error al guardar comentario"));
+}
+</script>
+
+{% endblock %}
