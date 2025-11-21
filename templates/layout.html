@@ -34,7 +34,9 @@
           <li><a class="nav-link neon-link" href="{{ url_for('promociones') }}"><i class="bi bi-tags"></i> Promociones</a></li>
           <li><a class="nav-link neon-link" href="{{ url_for('nosotros') }}"><i class="bi bi-people"></i> Nosotros</a></li>
           <li><a class="nav-link neon-link" href="{{ url_for('contacto') }}"><i class="bi bi-envelope"></i> Contacto</a></li>
-          <li><a class="nav-link neon-link" href="{{ url_for('mis_pedidos') }}"><i class="bi bi-bag"></i> Mis pedidos</a></li>
+
+          <!-- 🔥 CORRECCIÓN AQUÍ -->
+          <li><a class="nav-link neon-link" href="{{ url_for('mis_pedidos', telefono='') }}"><i class="bi bi-bag"></i> Mis pedidos</a></li>
 
         </ul>
       </div>
