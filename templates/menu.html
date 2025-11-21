@@ -23,7 +23,7 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Pollo Entero">
             <input type="hidden" name="precio" value="180">
-            <input type="hidden" name="imagen" value="/static/imagenes/asado.jpg">
+            <input type="hidden" name="imagen" value="imagenes/asado.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -46,7 +46,7 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Medio Pollo">
             <input type="hidden" name="precio" value="120">
-            <input type="hidden" name="imagen" value="/static/imagenes/barbecue.jpg">
+            <input type="hidden" name="imagen" value="imagenes/barbecue.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -69,7 +69,7 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Alitas BBQ">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/Alitas BBQ.jpg">
+            <input type="hidden" name="imagen" value="imagenes/Alitas BBQ.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -80,8 +80,8 @@
       </div>
     </div>
 
-
-     <div class="col-md-4">
+    <!-- 🔥 DIABLA -->
+    <div class="col-md-4">
       <div class="card shadow-lg">
         <img src="{{ url_for('static', filename='imagenes/diabla.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
@@ -92,7 +92,7 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Diabla">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/diabla.jpg">
+            <input type="hidden" name="imagen" value="imagenes/diabla.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -103,9 +103,8 @@
       </div>
     </div>
 
-
-
-     <div class="col-md-4">
+    <!-- 🔥 EMPANIZADO -->
+    <div class="col-md-4">
       <div class="card shadow-lg">
         <img src="{{ url_for('static', filename='imagenes/empanizado.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
@@ -116,7 +115,7 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Empanizado">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/empanizado.jpg">
+            <input type="hidden" name="imagen" value="imagenes/empanizado.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -127,19 +126,19 @@
       </div>
     </div>
 
-
-     <div class="col-md-4">
+    <!-- 🔥 ENSALADA -->
+    <div class="col-md-4">
       <div class="card shadow-lg">
         <img src="{{ url_for('static', filename='imagenes/ensalada.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
           <h4 class="fw-bold text-warning">Ensalada</h4>
-          <p class="text-white-50">Ensalada con majonesa</p>
+          <p class="text-white-50">Ensalada con mayonesa</p>
           <h5 class="text-success fw-bold">$85.00</h5>
 
           <form action="{{ url_for('ordenar') }}" method="POST">
-            <input type="hidden" name="producto" value="ensalada">
+            <input type="hidden" name="producto" value="Ensalada">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/ensalada.jpg">
+            <input type="hidden" name="imagen" value="imagenes/ensalada.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -150,18 +149,19 @@
       </div>
     </div>
 
-     <div class="col-md-4">
+    <!-- 🔥 ESPAGUETI -->
+    <div class="col-md-4">
       <div class="card shadow-lg">
         <img src="{{ url_for('static', filename='imagenes/espagueti.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
           <h4 class="fw-bold text-warning">Espagueti</h4>
-          <p class="text-white-50">Espagueti a la bbq</p>
+          <p class="text-white-50">Espagueti a la BBQ</p>
           <h5 class="text-success fw-bold">$85.00</h5>
 
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Espagueti">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/espagueti.jpg">
+            <input type="hidden" name="imagen" value="imagenes/espagueti.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -172,19 +172,19 @@
       </div>
     </div>
 
-
-      <div class="col-md-4">
+    <!-- 🔥 TACOS -->
+    <div class="col-md-4">
       <div class="card shadow-lg">
         <img src="{{ url_for('static', filename='imagenes/tacos.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
           <h4 class="fw-bold text-warning">Tacos de pollo</h4>
-          <p class="text-white-50">Tacos de pollo desmenusado</p>
+          <p class="text-white-50">Tacos de pollo desmenuzado</p>
           <h5 class="text-success fw-bold">$85.00</h5>
 
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Tacos">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/tacos.jpg">
+            <input type="hidden" name="imagen" value="imagenes/tacos.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -195,20 +195,19 @@
       </div>
     </div>
 
-
-
-      <div class="col-md-4">
+    <!-- 🔥 ROSTIZADO -->
+    <div class="col-md-4">
       <div class="card shadow-lg">
         <img src="{{ url_for('static', filename='imagenes/rostisado.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
-          <h4 class="fw-bold text-warning">Rostisado</h4>
-          <p class="text-white-50">Pollo entero rostisado</p>
+          <h4 class="fw-bold text-warning">Rostizado</h4>
+          <p class="text-white-50">Pollo entero rostizado</p>
           <h5 class="text-success fw-bold">$85.00</h5>
 
           <form action="{{ url_for('ordenar') }}" method="POST">
-            <input type="hidden" name="producto" value="Rostisado">
+            <input type="hidden" name="producto" value="Rostizado">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/rostisado.jpg">
+            <input type="hidden" name="imagen" value="imagenes/rostisado.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
