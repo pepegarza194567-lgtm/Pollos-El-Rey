@@ -7,16 +7,22 @@
   </h2>
 
   <!-- Saludo -->
+  {% if pedidos %}
   <div class="alert alert-dark shadow-sm text-center mt-3 neon-box">
-    👋 Hola <strong>{{ pedidos[0]['cliente'] if pedidos else '' }}</strong> ({{ telefono }})
+    👋 Hola <strong>{{ pedidos[0].cliente }}</strong> ({{ telefono }})
   </div>
+  {% else %}
+  <div class="alert alert-dark shadow-sm text-center mt-3 neon-box">
+    👋 Hola ({{ telefono }})
+  </div>
+  {% endif %}
 
   {% if pedidos %}
   <div class="table-responsive mt-4">
     <table class="table table-dark table-hover table-bordered align-middle neon-table">
       <thead class="text-center">
         <tr>
-          <th>ID</th>
+          <th>#</th>
           <th>Producto</th>
           <th>Imagen</th>
           <th>Precio</th>
@@ -33,16 +39,23 @@
 
           <td class="fw-bold">{{ pedido.producto }}</td>
 
+          <!-- IMAGEN DEL PRODUCTO -->
           <td>
             {% if pedido.imagen %}
-              <img src="{{ pedido.imagen }}" width="80" class="rounded shadow neon-img">
+              <img src="{{ url_for('static', filename=pedido.imagen) }}"
+                   width="80"
+                   class="rounded shadow neon-img">
             {% else %}
               <span class="text-danger">Sin imagen</span>
             {% endif %}
           </td>
 
-          <td class="text-success fw-bold">${{ pedido.precio }}.00</td>
+          <!-- PRECIO -->
+          <td class="text-success fw-bold">
+            ${{ pedido.precio }}
+          </td>
 
+          <!-- ESTADO -->
           <td>
             {% if pedido.estado == "Pendiente" %}
               <span class="badge bg-warning text-dark neon-badge">Pendiente</span>
@@ -53,10 +66,12 @@
 
           <td>{{ pedido.fecha }}</td>
 
+          <!-- COMENTARIO -->
           <td>
             <form onsubmit="guardarComentario(event, '{{ pedido._id }}')">
               <textarea name="comentario"
-                        class="form-control form-comment mb-2">{{ pedido.comentario }}</textarea>
+                        class="form-control form-comment mb-2"
+                        placeholder="Escribe un comentario...">{{ pedido.comentario }}</textarea>
               <button class="btn-neon-mini w-100">Guardar</button>
             </form>
           </td>
