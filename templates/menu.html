@@ -37,7 +37,7 @@
     <!-- 🔥 PRODUCTO: MEDIO POLLO -->
     <div class="col-md-4">
       <div class="card shadow-lg">
-        <img src="{{ url_for('static', filename='imagenes/medio.jpg') }}" class="card-img-top">
+        <img src="{{ url_for('static', filename='imagenes/barbecue.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
           <h4 class="fw-bold text-warning">Medio Pollo</h4>
           <p class="text-white-50">Perfecto para antojo</p>
@@ -46,7 +46,7 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Medio Pollo">
             <input type="hidden" name="precio" value="120">
-            <input type="hidden" name="imagen" value="/static/imagenes/medio.jpg">
+            <input type="hidden" name="imagen" value="/static/imagenes/barbecue.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
@@ -60,7 +60,7 @@
     <!-- 🔥 PRODUCTO: ALITAS -->
     <div class="col-md-4">
       <div class="card shadow-lg">
-        <img src="{{ url_for('static', filename='imagenes/alitas.jpg') }}" class="card-img-top">
+        <img src="{{ url_for('static', filename='imagenes/Alitas BBQ.jpg') }}" class="card-img-top">
         <div class="card-body text-center">
           <h4 class="fw-bold text-warning">Alitas BBQ</h4>
           <p class="text-white-50">Ración de 6 piezas</p>
@@ -69,7 +69,99 @@
           <form action="{{ url_for('ordenar') }}" method="POST">
             <input type="hidden" name="producto" value="Alitas BBQ">
             <input type="hidden" name="precio" value="85">
-            <input type="hidden" name="imagen" value="/static/imagenes/alitas.jpg">
+            <input type="hidden" name="imagen" value="/static/imagenes/Alitas BBQ.jpg">
+
+            <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
+
+            <button class="btn-neon w-100">Ordenar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+     <div class="col-md-4">
+      <div class="card shadow-lg">
+        <img src="{{ url_for('static', filename='imagenes/diabla.jpg') }}" class="card-img-top">
+        <div class="card-body text-center">
+          <h4 class="fw-bold text-warning">Diabla</h4>
+          <p class="text-white-50">Pollo a la diabla</p>
+          <h5 class="text-success fw-bold">$85.00</h5>
+
+          <form action="{{ url_for('ordenar') }}" method="POST">
+            <input type="hidden" name="producto" value="Diabla">
+            <input type="hidden" name="precio" value="85">
+            <input type="hidden" name="imagen" value="/static/imagenes/diabla.jpg">
+
+            <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
+
+            <button class="btn-neon w-100">Ordenar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+
+     <div class="col-md-4">
+      <div class="card shadow-lg">
+        <img src="{{ url_for('static', filename='imagenes/empanizado.jpg') }}" class="card-img-top">
+        <div class="card-body text-center">
+          <h4 class="fw-bold text-warning">Empanizado</h4>
+          <p class="text-white-50">Pollo entero</p>
+          <h5 class="text-success fw-bold">$85.00</h5>
+
+          <form action="{{ url_for('ordenar') }}" method="POST">
+            <input type="hidden" name="producto" value="Empanizado">
+            <input type="hidden" name="precio" value="85">
+            <input type="hidden" name="imagen" value="/static/imagenes/empanizado.jpg">
+
+            <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
+
+            <button class="btn-neon w-100">Ordenar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+     <div class="col-md-4">
+      <div class="card shadow-lg">
+        <img src="{{ url_for('static', filename='imagenes/ensalada.jpg') }}" class="card-img-top">
+        <div class="card-body text-center">
+          <h4 class="fw-bold text-warning">Ensalada</h4>
+          <p class="text-white-50">Ensalada con majonesa</p>
+          <h5 class="text-success fw-bold">$85.00</h5>
+
+          <form action="{{ url_for('ordenar') }}" method="POST">
+            <input type="hidden" name="producto" value="ensalada">
+            <input type="hidden" name="precio" value="85">
+            <input type="hidden" name="imagen" value="/static/imagenes/ensalada.jpg">
+
+            <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
+            <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
+
+            <button class="btn-neon w-100">Ordenar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+     <div class="col-md-4">
+      <div class="card shadow-lg">
+        <img src="{{ url_for('static', filename='imagenes/espagueti.jpg') }}" class="card-img-top">
+        <div class="card-body text-center">
+          <h4 class="fw-bold text-warning">Espagueti</h4>
+          <p class="text-white-50">Espagueti a la bbq</p>
+          <h5 class="text-success fw-bold">$85.00</h5>
+
+          <form action="{{ url_for('ordenar') }}" method="POST">
+            <input type="hidden" name="producto" value="Espagueti">
+            <input type="hidden" name="precio" value="85">
+            <input type="hidden" name="imagen" value="/static/imagenes/espagueti.jpg">
 
             <input type="text" class="form-control mb-2" name="nombre" placeholder="Tu nombre" required>
             <input type="text" class="form-control mb-2" name="telefono" placeholder="Número" required>
