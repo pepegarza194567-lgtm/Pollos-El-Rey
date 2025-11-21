@@ -3,14 +3,15 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from flask_mail import Mail, Message
 from datetime import datetime
+import os
 
 app = Flask(__name__)
 app.secret_key = "polloselrey2025"
 
 # ------------------------------------------
-# 🔗 CONEXIÓN A MONGO DB ATLAS (RENDER NO USA LOCALHOST)
+# 🔗 CONEXIÓN A MONGO DB ATLAS (VARIABLE DE ENTORNO)
 # ------------------------------------------
-MONGO_URI = "mongodb+srv://pepegarza194567_db_user:LDC11012004@cluster0.lhny06q.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+MONGO_URI = os.getenv("MONGO_URI")
 
 cliente = MongoClient(MONGO_URI)
 db = cliente["pollos_el_rey"]
@@ -25,9 +26,9 @@ mensajes_col = db["mensajes"]
 app.config['MAIL_SERVER'] = 'smtp.gmail.com'
 app.config['MAIL_PORT'] = 587
 app.config['MAIL_USE_TLS'] = True
-app.config['MAIL_USERNAME'] = 'leoneldiaz8620@gmail.com'
-app.config['MAIL_PASSWORD'] = 'mzrfkkorwdjldicj'  # contraseña de aplicación
-app.config['MAIL_DEFAULT_SENDER'] = ('Pollos El Rey', 'leoneldiaz8620@gmail.com')
+app.config['MAIL_USERNAME'] = os.getenv("MAIL_USERNAME")
+app.config['MAIL_PASSWORD'] = os.getenv("MAIL_PASSWORD")
+app.config['MAIL_DEFAULT_SENDER'] = ('Pollos El Rey', os.getenv("MAIL_USERNAME"))
 
 mail = Mail(app)
 
@@ -68,7 +69,7 @@ def contacto():
             # Enviar correo
             msg = Message(
                 subject=f"Nuevo mensaje: {asunto}",
-                recipients=['leoneldiaz8620@gmail.com'],
+                recipients=[os.getenv("MAIL_USERNAME")],
                 body=f"De: {correo}\n\nMensaje:\n{mensaje}"
             )
             mail.send(msg)
@@ -153,7 +154,7 @@ def guardar_comentario(id):
     return "Comentario guardado correctamente", 200
 
 # -------------------------------------------------------------
-# 🚀 EJECUCIÓN (Render NO usa debug ni webbrowser)
+# 🚀 EJECUCIÓN (Render)
 # -------------------------------------------------------------
 if __name__ == '__main__':
     app.run(host="0.0.0.0", port=5000)
