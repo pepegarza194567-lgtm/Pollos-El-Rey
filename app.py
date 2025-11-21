@@ -12,6 +12,7 @@ app.secret_key = "polloselrey2025"
 # 🔗 CONEXIÓN A MONGO DB ATLAS
 # ------------------------------------------
 MONGO_URI = os.getenv("MONGO_URI")
+MONGO_URI="mongodb+srv://pepegarza194567:LDC11012004@cluster0.lhny06q.mongodb.net/pollos_el_rey?retryWrites=true&w=majority&appName=Cluster0"
 
 if not MONGO_URI:
     raise Exception("❌ ERROR: La variable MONGO_URI no está definida en Render")
