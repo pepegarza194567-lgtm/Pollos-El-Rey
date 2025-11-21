@@ -12,9 +12,19 @@ app.secret_key = "polloselrey2025"
 # 🔗 CONEXIÓN A MONGO DB ATLAS
 # ------------------------------------------
 MONGO_URI = os.getenv("MONGO_URI")
-cliente = MongoClient(MONGO_URI)
-db = cliente["pollos_el_rey"]
 
+if not MONGO_URI:
+    raise Exception("❌ ERROR: La variable MONGO_URI no está definida en Render")
+
+try:
+    cliente = MongoClient(MONGO_URI)
+    cliente.admin.command("ping")
+    print("✔ Conexión con MongoDB Atlas exitosa.")
+except Exception as e:
+    print("❌ ERROR de conexión con MongoDB:", e)
+    raise Exception("No se pudo conectar a MongoDB Atlas.")
+
+db = cliente["pollos_el_rey"]
 productos_col = db["productos"]
 pedidos_col = db["pedidos"]
 mensajes_col = db["mensajes"]
@@ -95,8 +105,6 @@ def contacto():
 def ordenar():
     nombre = request.form.get("nombre", "").strip()
     telefono = request.form.get("telefono", "").strip()
-
-    # valores que pueden NO venir del HTML
     producto = request.form.get("producto", "").strip()
     precio = request.form.get("precio", "0").strip()
     imagen = request.form.get("imagen", "").strip()
@@ -105,7 +113,6 @@ def ordenar():
         flash("⚠️ Debes ingresar nombre y número.", "warning")
         return redirect(url_for('menu'))
 
-    # asegurar que precio sea número
     try:
         precio = float(precio)
     except:
@@ -122,9 +129,13 @@ def ordenar():
         "comentario": ""
     }
 
-    pedidos_col.insert_one(pedido)
+    try:
+        pedidos_col.insert_one(pedido)
+        flash("✅ Pedido registrado correctamente.", "success")
+    except Exception as e:
+        print("❌ Error al guardar pedido:", e)
+        flash("❌ Error guardando el pedido.", "danger")
 
-    flash("✅ Pedido registrado correctamente.", "success")
     return redirect(url_for('mis_pedidos', telefono=telefono))
 
 # ------------------------------------------
